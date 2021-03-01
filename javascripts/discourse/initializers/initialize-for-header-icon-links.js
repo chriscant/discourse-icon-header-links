@@ -13,7 +13,7 @@ export default {
           const fragments = link.split(",").map(fragment => fragment.trim());
           const title = fragments[0];
           const icon = iconNode(fragments[1].toLowerCase());
-          const href = fragments[2];
+          const href = fragments[2].replace('%{username}', Discourse.User.currentProp("username"));
           const className = `header-icon-${dasherize(fragments[0])}`;
           const viewClass = fragments[3].toLowerCase();
           const target = fragments[4].toLowerCase() === "blank" ? "_blank" : "";
