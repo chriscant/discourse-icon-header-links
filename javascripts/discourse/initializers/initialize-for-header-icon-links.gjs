@@ -2,6 +2,7 @@ import { dasherize } from "@ember/string";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import icon from "discourse-common/helpers/d-icon";
 import isValidUrl from "../lib/isValidUrl";
+import User from "discourse/models/user"
 
 function buildIcon(iconNameOrImageUrl, title) {
   if (isValidUrl(iconNameOrImageUrl)) {
@@ -25,7 +26,7 @@ export default {
           const fragments = link.split(",").map((fragment) => fragment.trim());
           const title = fragments[0];
           const iconTemplate = buildIcon(fragments[1], title);
-          const href = fragments[2].replace('%{username}', Discourse.User.currentProp("username"));
+          const href = fragments[2].replace('%{username}', User.currentProp("username"));
           const className = `header-icon-${dasherize(fragments[0])}`;
           const viewClass = fragments[3].toLowerCase();
           const target = fragments[4].toLowerCase() === "blank" ? "_blank" : "";
